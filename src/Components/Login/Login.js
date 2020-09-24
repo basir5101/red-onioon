@@ -14,6 +14,24 @@ const Login = () => {
         firebase.initializeApp(firebaseConfig);
     }
     const [user, setUser] = useContext(userContext);
+    const handleChange = (e) => {
+        const newUser = {...user};
+        newUser[e.target.name] = e.target.value;
+        setUser(newUser)
+    }
+    const handleSignIn = (e) => {
+        firebase.auth().signInWithEmailAndPassword(user.email, user.password)
+        .then(res =>{
+            const newUser = {...user};
+            newUser.login = true;
+            setUser(newUser);
+            history.replace(from);
+        })
+        .catch(error =>{
+            console.log(error.message)
+        })
+        e.preventDefault();
+    }
 
     var provider = new firebase.auth.GoogleAuthProvider();
     const handleGoogleSignIn = () =>{
@@ -37,9 +55,9 @@ const Login = () => {
             <div className="row justify-content-center login">
                 <div className = 'col-sm-5'>
                     <form>
-                        <input placeholder = 'enter email' type="text"/>
-                        <input placeholder = 'enter password' type="password"/>
-                        <input className = 'submit-button' type="submit" value="Login"/>
+                        <input name = 'email' onBlur = {handleChange} placeholder = 'enter email' type="text"/>
+                        <input password = 'password' onBlur = {handleChange} placeholder = 'enter password' type="password"/>
+                        <input onClick = {handleSignIn} className = 'submit-button' type="submit" value="Login"/>
                     </form>
                     <Link to = '/create-new-account'>
                         <button className = 'btn'>Create new Account</button>

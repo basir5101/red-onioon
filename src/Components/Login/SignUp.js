@@ -16,30 +16,36 @@ const SignUp = () => {
     const [user, setUser] = useContext(userContext);
     const handleBlur = (e) => {
         if(e.target.name === 'name'){
+            const userName = e.target.value;
+            const newUser = {...user};
+            newUser.name = userName;
+            setUser(newUser);
+        }
+        if(e.target.name === 'email'){
             const userEmail = e.target.value;
             const newUser = {...user};
             newUser.email = userEmail;
             setUser(newUser);
         }
-        if(e.target.name === 'email'){
+        if(e.target.name === 'password'){
             const userPassword = e.target.value;
             const newUser = {...user};
             newUser.password = userPassword;
-            setUser(newUser);
-        }
-        if(e.target.name === 'password'){
-            const userName = e.target.value;
-            const newUser = {...user};
-            newUser.name = userName;
             setUser(newUser);
         }
     }
 
     const handleSignUp = (e) =>{
         if(user.name && user.email && user.password){
-            firebase.auth().createUserWithEmailAndPassword(user.email, user.password).catch(function(error) {
+            firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+            .then(res =>{
+                const newUser = {...user};
+                newUser.login = true;
+                setUser(newUser);
+                history.replace(from);
+            })
+            .catch(function(error) {
                 console.log(error.message);;
-                // ...
               });
         }
         console.log(user.name)
