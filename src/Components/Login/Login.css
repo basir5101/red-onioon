@@ -1,0 +1,14 @@
+.login input{
+    width: 100%;
+    margin: 10px;
+    padding: 10px;
+    border: none;
+    outline: none;
+    background: rgb(205, 205, 238);
+    border-radius: 2px;
+}
+.login .submit-button{
+    background: hotpink;
+    color: white;
+    font-weight: bold;
+}

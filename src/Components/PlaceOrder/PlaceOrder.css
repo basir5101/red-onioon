@@ -1,0 +1,17 @@
+.deliver-form input{
+   width: 80%;
+   margin: 10px;
+   padding: 8px;
+   border-radius:2px;
+   outline: none;
+   border: none;
+   background: rgb(230, 222, 222);
+}
+.deliver-form input:nth-child(6){
+    background: rgb(211, 56, 56);
+    color: white;
+}
+.order-item::before{
+    content: '💕';
+    margin-top: 20px;
+}
