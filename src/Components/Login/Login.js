@@ -17,15 +17,18 @@ const Login = () => {
     const handleChange = (e) => {
         const newUser = {...user};
         newUser[e.target.name] = e.target.value;
-        setUser(newUser)
+        setUser(newUser);
+        console.log(newUser)
     }
     const handleSignIn = (e) => {
         firebase.auth().signInWithEmailAndPassword(user.email, user.password)
         .then(res =>{
             const newUser = {...user};
+            newUser.name = res.user.displayName;
             newUser.login = true;
             setUser(newUser);
             history.replace(from);
+            console.log('sign in user', res.user);
         })
         .catch(error =>{
             console.log(error.message)
@@ -56,7 +59,7 @@ const Login = () => {
                 <div className = 'col-sm-5'>
                     <form>
                         <input name = 'email' onBlur = {handleChange} placeholder = 'enter email' type="text"/>
-                        <input password = 'password' onBlur = {handleChange} placeholder = 'enter password' type="password"/>
+                        <input name = 'password' onBlur = {handleChange} placeholder = 'enter password' type="password"/>
                         <input onClick = {handleSignIn} className = 'submit-button' type="submit" value="Login"/>
                     </form>
                     <Link to = '/create-new-account'>

@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { orderItem } from '../../App';
 import Foods from '../../fakeData';
-import css from './MenuItem.css'
+import css from './MenuItem.css';
 
 const MenuItem = () => {
     const [item, setItem] = useContext(orderItem);
@@ -19,7 +19,7 @@ const MenuItem = () => {
             <div className="item row">
                 <div className="details col-sm-5">
                     <h2> {menuItem.name} </h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium aliquam iure numquam sunt dolores, sint consequuntur nisi dolore excepturi laborum quo quisquam, incidunt tempore mollitia deserunt sequi obcaecati. Possimus, incidunt!</p>
+                    <p>Lorem ipsum sunt dolores incidunt tempore mollitia deserunt sequi obcaecati. Possimus, incidunt!</p>
                     <div className = 'd-flex price'>
                         <h2> ${menuItem.price} </h2> 
                         <div className = 'd-flex change'>

@@ -43,6 +43,7 @@ const SignUp = () => {
                 newUser.login = true;
                 setUser(newUser);
                 history.replace(from);
+                updateUserName(user.name);
             })
             .catch(function(error) {
                 console.log(error.message);;
@@ -54,6 +55,19 @@ const SignUp = () => {
        
 
         e.preventDefault();
+    }
+
+    const updateUserName = (name) => {
+        const user = firebase.auth().currentUser;
+
+        user.updateProfile({
+        displayName: name,
+        photoURL: "https://example.com/jane-q-user/profile.jpg"
+        }).then(function() {
+            console.log('user name updated')
+        }).catch(function(error) {
+            console.log(error)
+        });
     }
     return (
         <div>
