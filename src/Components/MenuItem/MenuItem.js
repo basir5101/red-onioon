@@ -6,12 +6,31 @@ import css from './MenuItem.css';
 
 const MenuItem = () => {
     const [item, setItem] = useContext(orderItem);
+    const [itemNumber, setItemNumber] = useState(1);
     const {itemId} = useParams();
     const menuItem = Foods.find(f => f.id == itemId)
     const handleAddItem = (menuId) =>{
         const meal = Foods.find(f => f.id == menuId) ;  
         const newItem = [...item, meal];
         setItem(newItem);
+    }
+
+    const increase = () =>{
+        const newNumber = itemNumber + 1;
+        setItemNumber(newNumber);
+        const newItemPrice = {...menuItem};
+        menuItem.price = menuItem.price * newNumber;
+        console.log(menuItem.price)
+    }
+
+    const decrease = () =>{
+        if(itemNumber > 1){
+            const newNumber = itemNumber - 1;
+            setItemNumber(newNumber);
+            menuItem.price = menuItem.price * newNumber;
+        } else {
+            alert('Item Number cannot be zero')
+        }
     }
 
     return (
@@ -21,11 +40,11 @@ const MenuItem = () => {
                     <h2> {menuItem.name} </h2>
                     <p>Lorem ipsum sunt dolores incidunt tempore mollitia deserunt sequi obcaecati. Possimus, incidunt!</p>
                     <div className = 'd-flex price'>
-                        <h2> ${menuItem.price} </h2> 
-                        <div className = 'd-flex change'>
-                            <button> - </button>
-                            <input value = '1' className = '' type="text"/>
-                            <button className = 'plus'> + </button>
+                        <h2> ${menuItem.price.toFixed(2)} </h2> 
+                        <div className = 'row change'>
+                            <button onClick = {decrease}> - </button>
+                            <input value = {itemNumber} className = '' type="text"/>
+                            <button onClick = {increase} className = 'plus'> + </button>
                         </div>
                     </div>
                     <Link to = '/place-order'>

@@ -4,9 +4,13 @@ import { orderItem } from '../../App';
 
 const OrderDetails = () => {
     const [item, setItem] = useContext(orderItem);
-    const itemPrice = item.reduce((total, menu) => total + menu.price, 0)
-    const tax = itemPrice/10;
+    const price = item.reduce((total, menu) => total + menu.price, 0)
+    const itemPrice = parseFloat(price);
+    const taxes = itemPrice/10
+    const tax = parseFloat(taxes); 
     const total = tax + itemPrice;
+    
+    console.log(typeof(itemPrice), typeof(tax))
     return (
         <div>
             <p>From <strong>GulShan Plaza Restaura GPR</strong></p>
@@ -26,9 +30,9 @@ const OrderDetails = () => {
             </div>
             <div>
                 <p> Total Item: {item.length} </p>
-                <p>Item Price: {itemPrice} </p>
-                <p>Tax {tax} </p> 
-                <p>Total: {total} </p>
+                <p>Item Price: {itemPrice.toFixed(2)} </p>
+                <p>Tax {tax.toFixed(2)} </p> 
+                <p>Total: {total.toFixed(2)} </p>
             </div>
             <Link to = '/order-info'>
                 <button disabled = {!item.submit} className = 'btn btn-danger'> Place Order</button>

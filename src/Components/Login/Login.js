@@ -66,7 +66,7 @@ const Login = () => {
                         <button className = 'btn'>Create new Account</button>
                     </Link>
                     <div>
-                        <button onClick = {handleGoogleSignIn}> Sign in with google</button>
+                        <button className = 'bg-success px-5 py-2 btn' onClick = {handleGoogleSignIn}> Sign in with google</button>
                     </div>
                 </div>
                 
