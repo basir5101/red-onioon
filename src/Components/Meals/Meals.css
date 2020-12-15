@@ -3,24 +3,37 @@
     cursor: pointer;
     border-radius: 10px;
     background: rgb(236, 233, 233);
+    color: rgb(2, 66, 45);
+}
+.meals h4, h2{
+    color: rgb(47, 150, 0);
+}
+#meal-description:hover{
+    background-color: black;
 }
 .meals:hover{
-    box-shadow: 0px  0px 10px 3px;
+    box-shadow: 0px  0px 10px 3px black;
     cursor: pointer;
     border-radius: 10px;
+    transform: scale(1.05);
 }
-.categories{
-    display: flex;
-    justify-content: center;
+.categories li{
+    display: inline-block;
+    width: 100%;
+    margin: 5px;
+    text-align: center;
 }
-.categories p{
-    padding: 4px 10px;
-    margin: 10px 2px;
+.categories li p{
     font-weight: bold;
+    line-height: 50px;
+    color: white;
     cursor: pointer;
-    border-radius: 10px;
-    background: rgb(241, 234, 234);
     transition: 300ms;
+    background-color: rgb(11, 131, 27);
+}
+
+.categories li:active{
+    background-color: blue;
 }
 
 .categories p:hover{

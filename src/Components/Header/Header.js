@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { userContext } from '../../App';
 import css from './Header.css'
 
 const Header = () => {
+    const [user, setUser] = useContext(userContext);
     return (
         <div>
             <div className="header container d-flex justify-content-between">
@@ -12,12 +14,22 @@ const Header = () => {
                     </div>
                 </Link>
                 <div className="buttons">
-                    <Link to = '/login'>
-                        <button>Login</button>
-                    </Link>
-                    <Link to = '/create-new-account'>
-                        <button>Sign Up</button>
-                    </Link>
+                    {
+                        user.displayName ?
+                        <div>
+                            <button>{user.displayName}</button> 
+                            <button>Log out</button> 
+                        </div>
+                        : 
+                         <div>
+                            <Link to = '/login'>
+                                <button>Login</button>
+                            </Link>
+                            <Link to = '/create-new-account'>
+                                <button>Sign Up</button>
+                            </Link>
+                        </div> 
+                    }
                 </div>
             </div>
         </div>
